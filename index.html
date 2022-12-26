@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="/static/stuff.css" />
+</head>
+<body>
+    <script>
+        switch (window.location.pathname) {
+            case "/":
+                document.body.innerHTML = `<a href="profile">profile</a>`;
+                break;
+            case "/profile":
+                document.body.innerHTML = `My profile: <a href="/">back</a>`;
+                break;
+            default:
+                document.body.innerHTML = `404 Not found`;
+        }
+    </script>
+</body>
