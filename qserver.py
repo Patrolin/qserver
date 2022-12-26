@@ -1,4 +1,4 @@
-from http.server import HTTPServer, SimpleHTTPRequestHandler
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from os.path import exists as path_exists
 
 class MyHandler(SimpleHTTPRequestHandler):
@@ -13,12 +13,11 @@ class MyHandler(SimpleHTTPRequestHandler):
 RequestHandler = MyHandler
 
 if __name__ == '__main__':
-    myServer = HTTPServer(('0.0.0.0', 3000), RequestHandler)
+    myServer = ThreadingHTTPServer(('127.0.0.1', 3000), RequestHandler)
     print(">> qserver")
     try:
-        myServer.serve_forever()
+        myServer.serve_forever(.1)
     except KeyboardInterrupt:
-        pass
+        print("Exiting...")
 
     myServer.server_close()
-    print("Exiting.")
